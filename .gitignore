@@ -1,5 +1,7 @@
 externalLibs/
 .vs/
+.x64/Debug/
+M_API3D/x64/Debug
 # Prerequisites
 *.d
 
