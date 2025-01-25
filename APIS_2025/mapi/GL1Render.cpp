@@ -57,7 +57,7 @@ void GL1Render::init() {
 
         // PARA LA PRÁCTICA 4
         //activar carácteristica de profundidad 
-        glEnable(GL_DEPTH_TEST);
+        //glEnable(GL_DEPTH_TEST);
     }
 }
 
