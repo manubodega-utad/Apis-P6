@@ -164,8 +164,6 @@
     <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\Object.cpp" />
     <ClCompile Include="mapi\Object3D.cpp" />
-    <ClCompile Include="mapi\Program.cpp" />
-    <ClCompile Include="mapi\RenderProgram.cpp" />
     <ClCompile Include="mapi\System.cpp" />
     <ClCompile Include="mapi\TrianguloRot.cpp" />
     <ClCompile Include="mapi\World.cpp" />

@@ -1,6 +1,2 @@
-﻿  Object3D.cpp
-  Program.cpp
-  World.cpp
-  Generando código...
-LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-  M_API3D.vcxproj -> C:\Users\operador\OneDrive - BMC CONSTRUCTION, ESTUDIO & CONTRACT, S.L.U\Documentos\Utad\Apis Tridimensionales\Practicas\Practica2\practica2B\APIS_2025\x64\Debug\M_API3D.exe
+﻿LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  M_API3D.vcxproj -> C:\Users\operador\OneDrive - BMC CONSTRUCTION, ESTUDIO & CONTRACT, S.L.U\Documentos\Utad\Apis Tridimensionales\Practicas\Practica2\Apis-P2B\APIS_2025\x64\Debug\M_API3D.exe
