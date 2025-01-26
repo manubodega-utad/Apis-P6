@@ -85,45 +85,44 @@ unsigned int GLSLProgram::getVarLocation(std::string varName) {
     if (varList.find(varName) != varList.end())
         return varList[varName];
     else {
-        std::cout << "ERROR: variable " << varName <<
-            " no encontrada en shader\n";
+        std::cout << "ERROR: variable " << varName << " no encontrada en shader\n";
         return -1;
     }
 }
 
 
-// ---------- SETTERS: setInt, setFloat, setVec3, setVec4, setMatrix -----------
+// SETTERS
 void GLSLProgram::setInt(string& name, int val) {
-    auto loc = getVarLocation(name);
-    if (loc != (unsigned int)-1) {
-        glUniform1i(loc, val);
+    auto location = getVarLocation(name);
+    if (location != (unsigned int)-1) {
+        glUniform1i(location, val);
     }
 }
 
 void GLSLProgram::setFloat(std::string& name, float val) {
-    auto loc = getVarLocation(name);
-    if (loc != (unsigned int)-1) {
-        glUniform1f(loc, val);
+    auto location = getVarLocation(name);
+    if (location != (unsigned int)-1) {
+        glUniform1f(location, val);
     }
 }
 
 void GLSLProgram::setVec3(std::string& name, const glm::vec3& vec) {
-    auto loc = getVarLocation(name);
-    if (loc != (unsigned int)-1) {
-        glUniform3f(loc, vec.x, vec.y, vec.z);
+    auto location = getVarLocation(name);
+    if (location != (unsigned int)-1) {
+        glUniform3f(location, vec.x, vec.y, vec.z);
     }
 }
 
 void GLSLProgram::setVec4(std::string& name, const glm::vec4& vec) {
-    auto loc = getVarLocation(name);
-    if (loc != (unsigned int)-1) {
-        glUniform4f(loc, vec.x, vec.y, vec.z, vec.w);
+    auto location = getVarLocation(name);
+    if (location != (unsigned int)-1) {
+        glUniform4f(location, vec.x, vec.y, vec.z, vec.w);
     }
 }
 
 void GLSLProgram::setMatrix(std::string& name, const glm::mat4& mat) {
-    auto loc = getVarLocation(name);
-    if (loc != (unsigned int)-1) {
-        glUniformMatrix4fv(loc, 1, GL_FALSE, &mat[0][0]);
+    auto location = getVarLocation(name);
+    if (location != (unsigned int)-1) {
+        glUniformMatrix4fv(location, 1, GL_FALSE, &mat[0][0]);
     }
 }
