@@ -103,7 +103,7 @@ void System::mainLoop() {
         render->clearBuffers();
 
 		// Ordenar Objetos por Distancia a la Cámara
-        std::map<float, Object*> orderedMap;
+        std::multimap<float, Object*> orderedMap;
         std::vector<Object*> opaqueObjects;
         std::vector<Object*> transparentObjects;
 
@@ -119,7 +119,7 @@ void System::mainLoop() {
             if (alpha < 1.0f || blend != BlendMode::NONE) {
                 glm::vec3 objPos = glm::vec3(obj->getModel()[3]);
                 float distance = glm::distance(camPos, objPos);
-                orderedMap[distance] = obj;
+                orderedMap.insert(std::make_pair(distance, obj));
             }
             else {
                 opaqueObjects.push_back(obj);

@@ -38,6 +38,8 @@ void Particle::step(float deltaTime)
     // 3. Aplicar el spin
     rot.z += getSpin() * static_cast<float>(deltaTime);
 
+    computeModelMatrix();
+
     // 4. AutoFade
     if (autoFade && !meshes.empty()) {
         Material* mat = meshes[0]->getMaterial();

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+static std::map<std::string, std::vector<Mesh3D*>> meshCache;
+
 // Constructor
 Object3D::Object3D(string mshFile) : Object() 
 {
@@ -21,6 +23,13 @@ Object3D::Object3D(string mshFile) : Object()
 Object3D::~Object3D() {}
 
 void Object3D::loadDataFromFile(const string& file) {
+    if (meshCache.find(file) != meshCache.end()) {
+        for (Mesh3D* m : meshCache[file]) {
+            this->meshes.push_back(m);
+        }
+        return;
+    }
+
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(file.c_str());
 
@@ -160,7 +169,8 @@ void Object3D::loadDataFromFile(const string& file) {
 
             // Añadir la malla al objeto
             setMesh(mesh);
-        } 
+        }
+        meshCache[file] = this->meshes;
         
     }
     else {

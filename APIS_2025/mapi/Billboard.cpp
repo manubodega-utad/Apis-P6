@@ -25,7 +25,7 @@ void Billboard::computeModelMatrix()
     model[0][3] = 0;
     model[1][3] = 0;
     model[2][3] = 0;
-    model[3] = getPosition();
+    model[3] = glm::vec4(glm::vec3(getPosition()), 1.0f);
 
     model = glm::rotate(model, rot.z, { 0,0,1 });
     model = glm::scale(model, glm::vec3(scale));

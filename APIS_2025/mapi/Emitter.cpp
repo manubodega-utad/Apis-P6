@@ -96,6 +96,8 @@ void Emitter::step(float deltaTime)
             Particle* p = new Particle(mshFile, velocity, spinVelocity, lifeTime, autoFade);
             p->setPosition(this->pos);
 
+            p->computeModelMatrix();
+
             particleList.push_back(p);
             System::getWorld()->addObject(p);
         }
