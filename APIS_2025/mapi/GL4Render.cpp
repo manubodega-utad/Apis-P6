@@ -45,8 +45,7 @@ void GL4Render::setupObject(Object* obj) {
 
         // Verificar si ya existe el buffer object
         if (boList.find(meshID) != boList.end()) {
-            std::cerr << "[GL4Render] Advertencia: El Buffer Object ya existe para este MeshID\n";
-            return;
+            continue;
         }
 
         // Crear buffer objects

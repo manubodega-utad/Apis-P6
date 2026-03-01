@@ -41,7 +41,8 @@ void main()
     // ===== COLOR BASE =====
     vec4 baseColor = mat.color;
     if (mat.useColorText) {
-        baseColor = texture(colorText, fTextCoords);
+        vec4 texColor = texture(colorText, fTextCoords);
+        baseColor = vec4(texColor.rgb, texColor.a * mat.color.a);
     }
 
     if (useLighting == 0) {
@@ -57,7 +58,7 @@ void main()
     // El ambiente se suma una sola vez de forma global
     vec3 result = baseColor.rgb * ambient;
 
-    // ===== BUCLE MULTI-LUZ (Soporta hasta 8 luces simultáneas) =====
+    // ===== LUCES =====
     for (int i = 0; i < activeLights; i++) {
         if (lights[i].enable == 0) continue;
 

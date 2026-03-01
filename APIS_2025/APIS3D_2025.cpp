@@ -34,7 +34,7 @@ int main() {
 
 
     // 4) Ambiente
-    System::getWorld()->setAmbient(0.1f);
+    System::getWorld()->setAmbient(0.4f);
 
     // 5) Luces
     Light* pointLight = new Light(
@@ -42,6 +42,7 @@ int main() {
         glm::vec4(1.0f, 0.9f, 0.7f, 1.0f),
         glm::vec4(0.0f, 2.0f, 5.0f, 1.0f)
     );
+    pointLight->setLinearAttenuation(0.02f);
     System::getWorld()->addLight(pointLight);
 
     // 6) Totem
