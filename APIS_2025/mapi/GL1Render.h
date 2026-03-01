@@ -30,5 +30,7 @@ public:
     void setupObject(Object* obj) override;
     void removeObject(Object* obj) override;
     void drawObjects(const vector<Object*>* objs) override;
+    void clearBuffers() override;
+    void swapBuffers() override;
     bool isClosed() const override;
 };

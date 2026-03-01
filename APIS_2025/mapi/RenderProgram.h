@@ -8,6 +8,13 @@
 
 using namespace std;
 
+enum class BlendMode {
+    NONE,   // Objetos opacos
+    ALPHA,  // Transparencia estándar
+    ADD,    // Aditivo (fuego)
+    MUL     // Multiplicativo (sombras, oscurecimiento)
+};
+
 class RenderProgram {
 protected:
     //Id del programa renderizado
@@ -28,6 +35,9 @@ public:
     virtual void setVec3(const string& name, const glm::vec3& vec) = 0;
     virtual void setVec4(const string& name, const glm::vec4& vec) = 0;
     virtual void setMatrix(const string& name, const glm::mat4& mat) = 0;
+    virtual void setCulling(bool culling) = 0;
+    virtual void setDepthWrite(bool depthWrite) = 0;
+    virtual void setBlendMode(BlendMode blendMode) = 0;
 
     //Métodos
     virtual void addProgram(string& fileName) = 0;
@@ -36,4 +46,5 @@ public:
     virtual void checkLinkerErrors() = 0;
     virtual void setColorTextEnable(bool enable) = 0;
     virtual void bindColorTextureSampler(int binding, Texture* text) = 0;
+    
 };

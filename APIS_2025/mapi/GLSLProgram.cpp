@@ -144,7 +144,36 @@ void GLSLProgram::setVec4(const std::string& name, const glm::vec4& vec) {
 
 void GLSLProgram::setMatrix(const std::string& name, const glm::mat4& mat) {
     auto location = getVarLocation(name);
-    if (location != (unsigned int)-1) { /// Revisar este if
+    if (location != (unsigned int)-1) {
         glUniformMatrix4fv(location, 1, GL_FALSE, &mat[0][0]);
+    }
+}
+
+void GLSLProgram::setCulling(bool culling) {
+    culling ? glEnable(GL_CULL_FACE) : glDisable(GL_CULL_FACE);
+}
+
+void GLSLProgram::setDepthWrite(bool depthWrite) {
+    depthWrite ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
+}
+
+void GLSLProgram::setBlendMode(BlendMode blendMode) {
+    switch (blendMode) {
+    case BlendMode::NONE:
+        glBlendFunc(GL_SRC_COLOR, GL_ZERO);
+        glDisable(GL_BLEND);
+        break;
+    case BlendMode::ALPHA:
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        break;
+    case BlendMode::MUL:
+        glBlendFunc(GL_DST_COLOR, GL_ZERO);
+        glEnable(GL_BLEND);
+        break;
+    case BlendMode::ADD:
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        glEnable(GL_BLEND);
+        break;
     }
 }

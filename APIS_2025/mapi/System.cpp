@@ -57,6 +57,10 @@ void System::initSystem() {
 void System::addObject(Object* obj) {
     if (world) {
         world->addObject(obj);
+
+        if (render) {
+            render->setupObject(obj);
+        }
     }
 }
 
@@ -95,12 +99,44 @@ void System::mainLoop() {
         // Actualizar el mundo
         world->update(deltaTime);
 
-        // Dibujar los objetos
-        std::vector<Object*> objectList(world->getObjects().begin(), world->getObjects().end());
-        render->drawObjects(&objectList);
+        // Limpiar buffers
+        render->clearBuffers();
 
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+		// Ordenar Objetos por Distancia a la Cámara
+        std::map<float, Object*> orderedMap;
+        std::vector<Object*> opaqueObjects;
+        std::vector<Object*> transparentObjects;
+
+        Camera* cam = world->getActiveCamera();
+        glm::vec3 camPos = cam ? cam->getPosition() : glm::vec3(0.0f);
+
+        for (auto& obj : world->getObjects()) {
+            if (!obj || obj->getMeshes().empty()) continue;
+
+            float alpha = obj->getMeshes()[0]->getMaterial()->getColorRGBA().a;
+            BlendMode blend = obj->getMeshes()[0]->getMaterial()->getBlendMode();
+
+            if (alpha < 1.0f || blend != BlendMode::NONE) {
+                glm::vec3 objPos = glm::vec3(obj->getModel()[3]);
+                float distance = glm::distance(camPos, objPos);
+                orderedMap[distance] = obj;
+            }
+            else {
+                opaqueObjects.push_back(obj);
+            }
+        }
+
+        for (auto obj = orderedMap.rbegin(); obj != orderedMap.rend(); ++obj) {
+            transparentObjects.push_back(obj->second);
+        }
+        
+
+        // Dibujar los objetos
+        render->drawObjects(&opaqueObjects);
+        render->drawObjects(&transparentObjects);
+
+        // Intercambiar buffers
+        render->swapBuffers();
 
         // Cierre de Ventana
         if (Factory::isClosed(window)) {

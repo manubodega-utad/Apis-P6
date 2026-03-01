@@ -22,7 +22,7 @@ public:
 	void setPosition(glm::vec4 pos);
 	void setRotation(glm::vec4 rot);
 	void setScale(glm::vec4 scale);
-	void computeModelMatrix();
+	virtual void computeModelMatrix();
 
 	// Métodos
 	virtual void step(float deltaTime) = 0;

@@ -19,6 +19,10 @@ public:
     void setVec4(const string& name, const glm::vec4& vec) override;
     void setMatrix(const string& name, const glm::mat4& mat) override;
 
+    void setCulling(bool culling) override;
+    void setDepthWrite(bool depthWrite) override;
+    void setBlendMode(BlendMode blendMode) override;
+
     // Métodos
     void addProgram(string& fileName) override;
     void linkProgram() override;
@@ -26,7 +30,7 @@ public:
     void checkLinkerErrors() override;
     void setColorTextEnable(bool enable) override;
     void bindColorTextureSampler(int binding, Texture* text) override;
-
+   
 private:
     // Métodos propios
     void readVarList();

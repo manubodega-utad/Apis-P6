@@ -53,13 +53,13 @@ void GL1Render::init() {
         }
 
         glfwMakeContextCurrent(window);
-        // 4. Configurar cursor (sin modificar System)
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         glfwSetCursorPos(window, 0.0, 0.0);
         gladLoadGL(glfwGetProcAddress);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-        // PARA LA PRÁCTICA 4 activar carácteristica de profundidad 
-        // glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 }
 
@@ -105,6 +105,15 @@ void GL1Render::drawObjects(const std::vector<Object*>* objs) {
         glEnd();
 
     }
+}
+
+void GL1Render::clearBuffers() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void GL1Render::swapBuffers() {
+    glfwPollEvents();
+    glfwSwapBuffers(window);
 }
 
 bool GL1Render::isClosed() const {

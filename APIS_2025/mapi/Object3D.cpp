@@ -12,7 +12,9 @@ using namespace std;
 // Constructor
 Object3D::Object3D(string mshFile) : Object() 
 {
-    loadDataFromFile(mshFile);
+    if (mshFile != "") {
+        loadDataFromFile(mshFile);
+    }
 }
 
 // Destructor
@@ -96,6 +98,53 @@ void Object3D::loadDataFromFile(const string& file) {
             if (shininessNode) {
                 int s = shininessNode.text().as_int();
                 material->setShininess(s);
+            }
+
+            // Nodo de Iluminación
+            pugi::xml_node lightNode = materialNode.child("light");
+            if (lightNode) {
+                material->setLighting(lightNode.text().as_bool());
+            }
+            else {
+                material->setLighting(true);
+            }
+
+            // Nodo de Culling
+            pugi::xml_node cullingNode = materialNode.child("culling");
+            if (cullingNode) {
+                material->setCulling(cullingNode.text().as_bool());
+            }
+            else {
+                material->setCulling(false);
+            }
+
+            // Nodo de Depth Write
+            pugi::xml_node depthWriteNode = materialNode.child("depthWrite");
+            if (depthWriteNode) {
+                material->setDepthWrite(depthWriteNode.text().as_bool());
+            }
+            else {
+                material->setDepthWrite(true);
+            }
+
+            pugi::xml_node blendNode = materialNode.child("blendMode");
+            if (blendNode) {
+                std::string blendStr = blendNode.text().as_string();
+                if (blendStr == "alpha") {
+                    material->setBlendMode(BlendMode::ALPHA);
+                }
+                else if (blendStr == "add") {
+                    material->setBlendMode(BlendMode::ADD);
+                }
+                else if (blendStr == "mul") {
+                    material->setBlendMode(BlendMode::MUL);
+                }
+                else {
+                    material->setBlendMode(BlendMode::NONE);
+                }
+            }
+            else {
+                material->setBlendMode(BlendMode::NONE);
             }
 
 

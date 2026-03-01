@@ -91,6 +91,10 @@ void GLSLMaterial::prepare() {
 
         glsl->setInt("activeLights", i);
 
+		// ESTADO DE RENDER
+        glsl->setCulling(this->culling);
+        glsl->setDepthWrite(this->depthWrite);
+        glsl->setBlendMode(this->blendMode);
     }else 
     {
         cout << "[GLSLMaterial] ERROR: No se pudo hacer dynamic_cast a GLSLProgram" << endl;

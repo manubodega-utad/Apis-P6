@@ -5,6 +5,7 @@
 #include "Object.h"
 #include "Camera.h"
 #include "Light.h"
+#include "Emitter.h"
 
 class World {
 private:
@@ -13,6 +14,7 @@ private:
     int activeCamera;
     std::list<Light*> lights;
     float ambient;
+    std::vector<Emitter*> emitterList;
 
 public:
     // Constructor
@@ -32,15 +34,20 @@ public:
     void removeCamera(Camera* cam);
     void setActiveCamera(int index);
 
-    // P5 - Ambient
+    // Ambient
     float getAmbient() const;
     void setAmbient(float a);
 
-    // P5 - Lights
+    // Lights
     std::list<Light*>& getLights();
     Light* getLight(int pos);
     void addLight(Light* light);
     void deleteLight(int lightPos);
+
+	// Emitters
+    void addEmitter(Emitter* emitter);
+    void removeEmitter(Emitter* emitter);
+    const std::vector<Emitter*>& getEmitterList() const;
 
     // Update
     void update(float deltaTime);

@@ -26,5 +26,7 @@ public:
     virtual void setupObject(Object* obj) = 0;
     virtual void removeObject(Object* obj) = 0;
     virtual void drawObjects(const std::vector<Object*>* objs) = 0;
+    virtual void clearBuffers() = 0;
+    virtual void swapBuffers() = 0;
     virtual bool isClosed() const = 0;
 };

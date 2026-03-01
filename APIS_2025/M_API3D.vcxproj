@@ -156,9 +156,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="APIS3D_2025.cpp" />
+    <ClCompile Include="mapi\Billboard.cpp" />
     <ClCompile Include="mapi\Camera.cpp" />
     <ClCompile Include="mapi\CameraFPS.cpp" />
     <ClCompile Include="mapi\CameraKeyboard.cpp" />
+    <ClCompile Include="mapi\Emitter.cpp" />
     <ClCompile Include="mapi\Entity.cpp" />
     <ClCompile Include="mapi\Factory.cpp" />
     <ClCompile Include="mapi\GL1Render.cpp" />
@@ -174,16 +176,19 @@
     <ClCompile Include="mapi\Object.cpp" />
     <ClCompile Include="mapi\Object3D.cpp" />
     <ClCompile Include="mapi\OrbitalLight.cpp" />
+    <ClCompile Include="mapi\Particle.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\System.cpp" />
     <ClCompile Include="mapi\Texture.cpp" />
     <ClCompile Include="mapi\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapi\Billboard.h" />
     <ClInclude Include="mapi\Camera.h" />
     <ClInclude Include="mapi\CameraFPS.h" />
     <ClInclude Include="mapi\CameraKeyboard.h" />
     <ClInclude Include="mapi\common.h" />
+    <ClInclude Include="mapi\Emitter.h" />
     <ClInclude Include="mapi\Entity.h" />
     <ClInclude Include="mapi\Factory.h" />
     <ClInclude Include="mapi\GL1Render.h" />
@@ -200,6 +205,7 @@
     <ClInclude Include="mapi\Object.h" />
     <ClInclude Include="mapi\Object3D.h" />
     <ClInclude Include="mapi\OrbitalLight.h" />
+    <ClInclude Include="mapi\Particle.h" />
     <ClInclude Include="mapi\Program.h" />
     <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\RenderProgram.h" />

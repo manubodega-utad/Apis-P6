@@ -6,7 +6,7 @@ using namespace std;
 typedef enum class programTypes_e {
     vertex = 0,
     fragment = 1
-} programTypes_e;
+} programTypes_e;;
 
 class Program
 {
